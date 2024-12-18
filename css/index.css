@@ -238,11 +238,16 @@ header {
 .items-container {
   width: 80%;
   margin: 30px 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .item-container {
   width: 250px;
   padding: 5px;
+  margin: 20px;
+
   /* border: 1px solid black; */
 }
 
