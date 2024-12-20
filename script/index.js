@@ -1,9 +1,23 @@
 let bagItem = [];
 
+(() => {
+  displayBagCount();
+  displayItem();
+})();
+
 function addToBag(itemId) {
   bagItem.push(itemId);
+  displayBagCount();
+}
+
+function displayBagCount() {
   let count = document.querySelector(".bag-item-count");
-  count.innerHTML = bagItem.length;
+  if (bagItem.length > 0) {
+    count.style.visibility = "visible";
+    count.innerHTML = bagItem.length;
+  } else {
+    count.style.visibility = "hidden";
+  }
 }
 
 function displayItem() {
@@ -24,5 +38,3 @@ function displayItem() {
         </div>`;
   });
 }
-
-displayItem();
