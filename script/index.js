@@ -1,9 +1,9 @@
-let bagItem;
+let bagItems;
 
 // on display load
 (() => {
   let bagItemStr = localStorage.getItem("bagItems");
-  bagItem = bagItemStr ? JSON.parse(bagItemStr) : [];
+  bagItems = bagItemStr ? JSON.parse(bagItemStr) : [];
 
   //   if (bagItemStr) {
   //     bagItem = JSON.parse(bagItemStr);
@@ -16,9 +16,9 @@ let bagItem;
 })();
 
 function addToBag(itemId) {
-  bagItem.push(itemId);
+  bagItems.push(itemId);
 
-  localStorage.setItem("bagItems", JSON.stringify(bagItem));
+  localStorage.setItem("bagItems", JSON.stringify(bagItems));
 
   displayBagCount();
 }
@@ -26,9 +26,9 @@ function addToBag(itemId) {
 function displayBagCount() {
   let count = document.querySelector(".bag-item-count");
 
-  if (bagItem.length > 0) {
+  if (bagItems.length > 0) {
     count.style.visibility = "visible";
-    count.innerHTML = bagItem.length;
+    count.innerHTML = bagItems.length;
   } else {
     count.style.visibility = "hidden";
   }
