@@ -37,6 +37,8 @@ function displayBagCount() {
 function displayItem() {
   let itemsContainer = document.querySelector(".items-container");
 
+  console.log(itemsContainer);
+
   items.forEach((item) => {
     itemsContainer.innerHTML += `<div class="item-container">
           <img class="item-image" src="${item.image}" alt="Image 1" />
