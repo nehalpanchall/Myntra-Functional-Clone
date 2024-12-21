@@ -3,6 +3,7 @@ let bagItemObj;
 (() => {
   bagItemsObj();
   displayBagItems();
+  displayBagSummary();
   //   console.log(bagItemObj);
 })();
 
@@ -45,6 +46,7 @@ function removeBagItem(id) {
   bagItemsObj();
   displayBagItems();
   displayBagCount();
+  displayBagSummary();
 }
 
 function generateItem(items) {
@@ -73,4 +75,43 @@ function generateItem(items) {
 
             <div onClick="removeBagItem(${items.id})" class="remove-from-cart">X</div>
           </div>`;
+}
+
+function displayBagSummary() {
+  let bagSummaryElement = document.querySelector(".bag-summary");
+  let totalMRP = 0;
+  bagItemObj.forEach((element) => {
+    totalMRP += element.current_price;
+    console.log(typeof totalMRP);
+  });
+
+  let innerHTML = "";
+
+  innerHTML += `<div class="bag-details-container">
+            <div class="price-header">PRICE DETAILS (${bagItemObj.length} Items)</div>
+            <div class="price-item">
+              <span class="price-item-tag">Total MRP</span>
+              <span class="price-item-value">Rs ${totalMRP}</span>
+            </div>
+            <div class="price-item">
+              <span class="price-item-tag">Discount on MRP</span>
+              <span class="price-item-value priceDetail-base-discount"
+                >-Rs143</span
+              >
+            </div>
+            <div class="price-item">
+              <span class="price-item-tag">Convenience Fee</span>
+              <span class="price-item-value">Rs 99</span>
+            </div>
+            <hr />
+            <div class="price-footer">
+              <span class="price-item-tag">Total Amount</span>
+              <span class="price-item-value">Rs 1240</span>
+            </div>
+          </div>
+          <button class="btn-place-order">
+            <div class="css-xjhrni">PLACE ORDER</div>
+          </button>`;
+
+  bagSummaryElement.innerHTML = innerHTML;
 }
