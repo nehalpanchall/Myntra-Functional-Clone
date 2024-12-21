@@ -1,17 +1,31 @@
-let bagItem = [];
+let bagItem;
 
+// on display load
 (() => {
+  let bagItemStr = localStorage.getItem("bagItems");
+  bagItem = bagItemStr ? JSON.parse(bagItemStr) : [];
+
+  //   if (bagItemStr) {
+  //     bagItem = JSON.parse(bagItemStr);
+  //   } else {
+  //     bagItem = [];
+  //   }
+
   displayBagCount();
   displayItem();
 })();
 
 function addToBag(itemId) {
   bagItem.push(itemId);
+
+  localStorage.setItem("bagItems", JSON.stringify(bagItem));
+
   displayBagCount();
 }
 
 function displayBagCount() {
   let count = document.querySelector(".bag-item-count");
+
   if (bagItem.length > 0) {
     count.style.visibility = "visible";
     count.innerHTML = bagItem.length;
