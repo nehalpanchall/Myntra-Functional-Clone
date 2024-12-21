@@ -37,10 +37,9 @@ function displayBagCount() {
 function displayItem() {
   let itemsContainer = document.querySelector(".items-container");
 
-  console.log(itemsContainer);
-
-  items.forEach((item) => {
-    itemsContainer.innerHTML += `<div class="item-container">
+  if (itemsContainer) {
+    items.forEach((item) => {
+      itemsContainer.innerHTML += `<div class="item-container">
           <img class="item-image" src="${item.image}" alt="Image 1" />
           <div class="ratings">${item.rating.stars} ⭐ | ${item.rating.count}k</div>
           <div class="company-name">${item.company}</div>
@@ -52,5 +51,6 @@ function displayItem() {
           </div>
           <button onclick="addToBag(${item.id})" class="btn-add-bag">Add to Bag</button>
         </div>`;
-  });
+    });
+  }
 }
