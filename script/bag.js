@@ -7,7 +7,7 @@ let bagItemObj;
 })();
 
 function bagItemsObj() {
-  bagItemObj = bagItems.map((itemId) => {
+  bagItemObj = bagItem.map((itemId) => {
     for (let i = 0; i < items.length; i++) {
       if (itemId == items[i].id) {
         return items[i];
@@ -30,9 +30,21 @@ function bagItemsObj() {
 function displayBagItems() {
   let bagItemsContainer = document.querySelector(".bag-items-container");
 
+  let innerHTML = "";
   bagItemObj.forEach((item) => {
-    bagItemsContainer.innerHTML += generateItem(item);
+    innerHTML += generateItem(item);
   });
+  bagItemsContainer.innerHTML = innerHTML;
+}
+
+function removeBagItem(id) {
+  bagItem = bagItem.filter((val) => val != id);
+
+  localStorage.setItem("bagItems", JSON.stringify(bagItem));
+
+  bagItemsObj();
+  displayBagItems();
+  displayBagCount();
 }
 
 function generateItem(items) {
@@ -59,6 +71,6 @@ function generateItem(items) {
               </div>
             </div>
 
-            <div class="remove-from-cart">X</div>
+            <div onClick="removeBagItem(${items.id})" class="remove-from-cart">X</div>
           </div>`;
 }
