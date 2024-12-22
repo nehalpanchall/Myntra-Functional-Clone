@@ -118,8 +118,15 @@ function displayBagSummary() {
             </div>
           </div>
           <button class="btn-place-order">
-            <div class="css-xjhrni">PLACE ORDER</div>
+            <div onclick="placeOrder()" class="css-xjhrni">PLACE ORDER</div>
           </button>`;
 
   bagSummaryElement.innerHTML = innerHTML;
+}
+
+function placeOrder() {
+  localStorage.clear();
+
+  alert("your order placed...");
+  window.location.href = "../index.html";
 }
