@@ -79,11 +79,19 @@ function generateItem(items) {
 
 function displayBagSummary() {
   let bagSummaryElement = document.querySelector(".bag-summary");
+
+  console.log(bagItemObj);
+
   let totalMRP = 0;
+  let totalDiscount = 0;
+  const CONVENIENCE_FEES = 99;
+
   bagItemObj.forEach((element) => {
-    totalMRP += element.current_price;
-    console.log(typeof totalMRP);
+    totalMRP += element.original_price;
+    totalDiscount += element.original_price - element.current_price;
   });
+
+  let totalAmount = totalMRP - totalDiscount + CONVENIENCE_FEES;
 
   let innerHTML = "";
 
@@ -91,22 +99,22 @@ function displayBagSummary() {
             <div class="price-header">PRICE DETAILS (${bagItemObj.length} Items)</div>
             <div class="price-item">
               <span class="price-item-tag">Total MRP</span>
-              <span class="price-item-value">Rs ${totalMRP}</span>
+              <span class="price-item-value">₹ ${totalMRP}</span>
             </div>
             <div class="price-item">
               <span class="price-item-tag">Discount on MRP</span>
               <span class="price-item-value priceDetail-base-discount"
-                >-Rs143</span
+                >-₹ ${totalDiscount}</span
               >
             </div>
             <div class="price-item">
               <span class="price-item-tag">Convenience Fee</span>
-              <span class="price-item-value">Rs 99</span>
+              <span class="price-item-value">₹ ${CONVENIENCE_FEES}</span>
             </div>
             <hr />
             <div class="price-footer">
               <span class="price-item-tag">Total Amount</span>
-              <span class="price-item-value">Rs 1240</span>
+              <span class="price-item-value">₹ ${totalAmount}</span>
             </div>
           </div>
           <button class="btn-place-order">
